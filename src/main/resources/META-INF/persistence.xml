@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence"
-             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
-                                 http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
-  <persistence-unit name="crud" transaction-type="JTA">
-    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="cl.clarochile_crud_war_1.0PU" transaction-type="JTA">
     <jta-data-source>java:/crud</jta-data-source>
-     <class>com.proyecto.model.Usuario</class>
-   
-        <exclude-unlisted-classes>true</exclude-unlisted-classes>
-        <properties>
-            <!-- VER LOG ECLIPSELINK -->
-            <property name="eclipselink.logging.level" value="FINE"/>
-            <!-- ELIMINAR Y CREA TABLAS DE MANERA AUTOMATICA -->
-            <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
-                     
-            <!--CARGAR SCRIPT SQL PARA LLENADO DE TABLAS -->
-            <!--<property name="javax.persistence.sql-load-script-source" value="META-INF/test.sql"/>-->
-        </properties>
-    </persistence-unit>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+     <shared-cache-mode>NONE</shared-cache-mode>
+    <properties>
+      <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+      <property name="javax.persistence.schema-generation.scripts.action" value="drop-and-create"/>
+      <property name="javax.persistence.schema-generation.scripts.create-target" value="create.ddl"/>
+      <property name="javax.persistence.schema-generation.scripts.drop-target" value="drop.ddl"/>
+      <!-- cargar script -->
+      <!--<property name="javax.persistence.sql-load-script-source" value="META-INF/insert.sql"/>-->
+      <!-- logs -->
+      
+      <property name="hibernate.show_sql" value="true"/>
+      
+      <property name="hibernate.format_sql" value="true"/>
+      <property name="hibernate.enable_lazy_load_no_trans" value="true"/>
+      <!-- solo cuando se usa GlassFish
+      <property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.SunOneJtaPlatform"/>
+      -->
+    </properties>
+  </persistence-unit>
 </persistence>

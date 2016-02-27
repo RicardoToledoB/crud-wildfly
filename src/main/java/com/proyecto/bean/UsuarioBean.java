@@ -11,7 +11,7 @@ import javax.faces.view.ViewScoped;
 
 import javax.inject.Inject;
 @Named(value = "usuarioBean")
-@SessionScoped
+@ViewScoped
 public class UsuarioBean implements Serializable {
     private Usuario user;
     private List<Usuario> lista;
